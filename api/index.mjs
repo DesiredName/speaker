@@ -1,10 +1,16 @@
-const express = require('express');
-const app = express();
-const path = require('path');
-const handlebars = require("express-handlebars");
-const http = require("http").Server(app);
-const io = require("socket.io")(http);
+import express from 'express';
+import path from 'node:path';
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import handlebars from "express-handlebars";
+import {Server as HTTPServer}from 'http'
+import {Server as WSServer} from 'socket.io';
 
+const app = express();
+const http = HTTPServer(app);
+const io = new WSServer(http);
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const customHandlebars = handlebars.create({ layoutsDir: path.join(__dirname, 'views') });
 const port = process.env.PORT || 3000;
 const socketsStatus = {};
@@ -56,4 +62,3 @@ io.on("connection", function (socket) {
 
 http.listen(port, () => console.log(`Server ready on port ${port}`));
 
-module.exports = app;
