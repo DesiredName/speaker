@@ -10,12 +10,6 @@
           "headers": [
             { "key": "Access-Control-Allow-Origin", "value": "*" }
           ]
-        },
-        {
-          "source": "/speaker-opal.vercel.app/(.*)",
-          "headers": [
-            { "key": "Access-Control-Allow-Origin", "value": "*" }
-          ]
         }  
     ]
 }
