@@ -18,7 +18,7 @@ const userStatus = {
     mainFunction(1000);
   };
   
-  var socket = io(`wss://${url ?? window.location.hostname}`);
+  var socket = io(`wss://speaker-opal.vercel.app`);//${url ?? window.location.hostname}`);
   socket.emit("userInformation", userStatus);
   
   function mainFunction(time) {
