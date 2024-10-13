@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const handlebars = require("express-handlebars");
+const { serializeError } = require('serialize-error');
 
 const customHandlebars = handlebars.create({ layoutsDir: "./views" });
 const port = process.env.PORT || 3000;
@@ -18,7 +19,11 @@ app.get("/check" , (req , res)=>{
 });
 
 app.get("/home" , (req , res)=>{
-    res.render("index", { port });
+    try {
+        return res.render("index", { port });
+    } catch (ex) {
+        return res.send(serializeError(ex));
+    }
 });
 
 app.get('/uploadUser', function (req, res) {
