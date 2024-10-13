@@ -14,7 +14,7 @@ app.use("/files", express.static(path.join(__dirname, 'public')));
 
 app.get("/", (req, res) => res.send("Express on Vercel"));
 app.get("/check" , (req , res)=>{
-    res.json({ v_port, v_url: process.env.VERCEL_URL });
+    res.json({ v_port: port, v_url: process.env.VERCEL_URL });
 });
 app.get("/home" , (req , res)=>{
     try {
