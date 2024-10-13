@@ -10,7 +10,7 @@ app.engine("handlebars", customHandlebars.engine);
 app.set("view engine", "handlebars");
 console.log(__dirname)
 app.set('views', path.join(__dirname, 'views'));
-app.use("/files", express.static("public"));
+app.use("/files", express.static(path.join(__dirname, 'public')));
 
 app.get("/", (req, res) => res.send("Express on Vercel"));
 app.get("/check" , (req , res)=>{
