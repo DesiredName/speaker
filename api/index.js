@@ -24,7 +24,7 @@ app.get("/check" , (req , res)=>{
     res.json({ v_port: port, v_url: process.env.VERCEL_URL });
 });
 app.get("/home" , (req , res)=>{
-        return res.render("index", { layout: false, v_port: port, v_url: process.env.VERCEL_URL });
+    return res.render("index", { layout: false, v_port: port, v_url: process.env.VERCEL_URL });
 });
 
 io.on("connection", function (socket) {
@@ -60,4 +60,4 @@ io.on("connection", function (socket) {
 
 http.listen(port, () => console.log(`Server ready on port ${port}`));
 
-module.exports = http;
+module.exports = app;
