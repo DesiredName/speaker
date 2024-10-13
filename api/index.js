@@ -18,7 +18,7 @@ app.get("/check" , (req , res)=>{
 });
 app.get("/home" , (req , res)=>{
     try {
-        return res.render("index", { layout: false, port });
+        return res.render("index", { layout: false, v_port: port, v_url: process.env.VERCEL_URL });
     } catch (ex) {
         return ex.toString();
     }

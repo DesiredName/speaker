@@ -4,9 +4,8 @@
 	"description": "",
 	"main": "index.ts",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
 		"publish": "git add . && git commit -m 'update' && git push",
-		"start": "node api/index.ts"
+		"start": "node api/index.js"
 	},
 	"keywords": [],
 	"author": "",
