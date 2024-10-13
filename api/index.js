@@ -10,14 +10,16 @@ const port = process.env.PORT || 3000;
 app.engine("handlebars", customHandlebars.engine);
 app.set("view engine", "handlebars");
 
-app.use("/files", express.static("public"));
+app.use((err, req, res, next) => {
+    res.status(500).send('Something broke!')
+})
 app.use(csp({
     policies: {
         'default-src': [UNSAFE_EVAL],
         'script-src': [UNSAFE_EVAL],
     }
 }))
-
+app.use("/files", express.static("public"));
 app.get("/", (req, res) => res.send("Express on Vercel"));
 
 app.get("/check" , (req , res)=>{
