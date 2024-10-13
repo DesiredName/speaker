@@ -1,4 +1,13 @@
-<header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hossein Mobarakian - voice chat application</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js" integrity="sha512-iZIBSs+gDyTH0ZhUem9eQ1t4DcEn2B9lHxfRMeGQhyNdSUz+rb+5A3ummX6DQTOIs1XK0gOteOg/LPtSo9VJ+w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
     <div class="user-controller">
         <p id="username-label"></p>
         <div id="username-div">
@@ -14,9 +23,7 @@
         <button class="control-btn disable-btn" onclick="toggleConnection(this)">Go online</button>
     </div>
 
-</header>
-
-<h2>users list</h2>
+    <h2>users list</h2>
 <ul class="users" id="users">
 
 </ul>
@@ -26,3 +33,6 @@
 </script>
 <script src="/files/js/index.js"></script>
 <link rel="stylesheet" href="/files/css/index.css">
+</body>
+</html>
+
