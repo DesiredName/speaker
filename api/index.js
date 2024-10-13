@@ -2,8 +2,9 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const handlebars = require("express-handlebars");
-const { serializeError } = require('serialize-error');
+const se = require('serialize-error');
 
+const { serializeError } = se;
 const customHandlebars = handlebars.create({ layoutsDir: "./views" });
 const port = process.env.PORT || 3000;
 
