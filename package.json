@@ -4,6 +4,7 @@
 	"description": "",
 	"main": "index.ts",
 	"scripts": {
+		"dev": "nodemon api/index.js",
 		"publish": "git add . && git commit -m 'update' && git push",
 		"start": "node api/index.js"
 	},
@@ -17,6 +18,7 @@
 		"express": "^4.21.1",
 		"express-csp-header": "^5.2.1",
 		"express-handlebars": "^8.0.1",
+		"nodemon": "^3.1.7",
 		"serialize-error": "^11.0.3",
 		"socket.io": "^4.8.0"
 	}

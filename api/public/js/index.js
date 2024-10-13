@@ -18,11 +18,10 @@ const userStatus = {
     mainFunction(1000);
   };
   
-  var socket = io(`wss://${url}`);
+  var socket = io(`ws://${url ?? window.location.hostname}`);
   socket.emit("userInformation", userStatus);
   
   function mainFunction(time) {
-  
   
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
       var madiaRecorder = new MediaRecorder(stream);
