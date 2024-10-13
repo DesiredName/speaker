@@ -13,6 +13,10 @@ app.use("/files", express.static("public"));
 
 app.get("/", (req, res) => res.send("Express on Vercel"));
 
+app.get("/check" , (req , res)=>{
+    res.json({ port });
+});
+
 app.get("/home" , (req , res)=>{
     res.render("index", { port });
 });
