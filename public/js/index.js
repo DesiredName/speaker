@@ -18,9 +18,8 @@ const userStatus = {
     mainFunction(1000);
   };
   
-  var socket = io("ws://localhost:3001");
+  var socket = io(`ws://${window.location.hostname}:${port}`);
   socket.emit("userInformation", userStatus);
-  
   
   function mainFunction(time) {
   

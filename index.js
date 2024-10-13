@@ -10,6 +10,7 @@ const socketsStatus = {};
 
 //config and set handlebars to express
 const customHandlebars = handlebars.create({ layoutsDir: "./views" });
+const port = process.env.PORT || 3000;
 
 app.engine("handlebars", customHandlebars.engine);
 app.set("view engine", "handlebars");
@@ -20,13 +21,12 @@ app.use("/files", express.static("public"));
 app.get("/", (req, res) => res.send("Express on Vercel"));
 
 app.get("/home" , (req , res)=>{
-    res.render("index");
+    res.render("index", { port });
 });
 
 io.on("connection", function (socket) {
     const socketId = socket.id;
     socketsStatus[socket.id] = {};
-  
   
     console.log("connect");
   
@@ -57,8 +57,10 @@ io.on("connection", function (socket) {
   
   });
   
-http.listen(3001, () => {
-  console.log("the app is run in port 3001!");
+http.listen(port, () => {
+  console.log(`server is run on port ${port}`);
 });
 
-module.exports = http;
+console.dir(process.ENV)
+
+module.exports = app;
