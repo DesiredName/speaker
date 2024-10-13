@@ -18,7 +18,7 @@ app.get("/check" , (req , res)=>{
 });
 app.get("/home" , (req , res)=>{
     try {
-        return res.render("index", { port });
+        return res.render("index", { layout: false, port });
     } catch (ex) {
         return ex.toString();
     }
