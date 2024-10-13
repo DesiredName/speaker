@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const handlebars = require("express-handlebars");
+const csp = require('express-csp-header');
 
 const customHandlebars = handlebars.create({ layoutsDir: "./views" });
 const port = process.env.PORT || 3000;
@@ -10,6 +11,11 @@ app.engine("handlebars", customHandlebars.engine);
 app.set("view engine", "handlebars");
 
 app.use("/files", express.static("public"));
+app.use(csp({
+    policies: {
+        'default-src': [csp.NONE, csp.UNSAFE_EVAL]
+    }
+}))
 
 app.get("/", (req, res) => res.send("Express on Vercel"));
 
