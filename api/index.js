@@ -12,7 +12,7 @@ app.set("view engine", "handlebars");
 
 app.set('views', path.join(__dirname, 'views'));
 app.use(cors({
-    "origin": "*",
+    "origin": "https://speaker-i1n1jiptw-desirednames-projects.vercel.app",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "preflightContinue": false,
     "optionsSuccessStatus": 204
