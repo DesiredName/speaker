@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const handlebars = require("express-handlebars");
-const path = require('path');
 
 const customHandlebars = handlebars.create({ layoutsDir: "./views" });
 const port = process.env.PORT || 3000;
