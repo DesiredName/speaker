@@ -5,6 +5,7 @@
 	"main": "index.ts",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
+		"publish": "git add . && git commit -m 'update' && git push",
 		"start": "node api/index.ts"
 	},
 	"keywords": [],
@@ -13,6 +14,8 @@
 	"dependencies": {
 		"@vercel/postgres": "^0.7.2",
 		"dotenv": "^16.4.1",
-		"express": "^4.18.2"
+		"express": "^4.21.1",
+		"express-handlebars": "^8.0.1",
+		"socket.io": "^4.8.0"
 	}
 }
