@@ -13,7 +13,7 @@ app.set("view engine", "handlebars");
 app.use("/files", express.static("public"));
 app.use(csp({
     policies: {
-        'default-src': [NONE, UNSAFE_EVAL]
+        'script-src': [UNSAFE_EVAL],
     }
 }))
 
