@@ -1,20 +1,12 @@
-const express = require("express");
+const express = require('express');
 const app = express();
-const handlebars = require("express-handlebars");
-const http = require("http").Server(app);
-const io = require("socket.io")(http);
+const bodyParser = require('body-parser');
+const path = require('path');
 
-//To holding users information
-const socketsStatus = {};
-
-//config and set handlebars to express
-const customHandlebars = handlebars.create({ layoutsDir: "./views" });
+// Create application/x-www-form-urlencoded parser
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const port = process.env.PORT || 3000;
 
-app.engine("handlebars", customHandlebars.engine);
-app.set("view engine", "handlebars");
-
-//enable user access to public folder
 app.use("/files", express.static("public"));
 
 app.get("/", (req, res) => res.send("Express on Vercel"));
@@ -23,38 +15,20 @@ app.get("/home" , (req , res)=>{
     res.render("index", { port });
 });
 
-io.on("connection", function (socket) {
-    const socketId = socket.id;
-    socketsStatus[socket.id] = {};
-
-    console.log("connect");
-
-    socket.on("voice", function (data) {
-
-      var newData = data.split(";");
-      newData[0] = "data:audio/ogg;";
-      newData = newData[0] + newData[1];
-
-      for (const id in socketsStatus) {
-
-        if (id != socketId && !socketsStatus[id].mute && socketsStatus[id].online)
-          socket.broadcast.to(id).emit("send", newData);
-      }
-
-    });
-
-    socket.on("userInformation", function (data) {
-      socketsStatus[socketId] = data;
-
-      io.sockets.emit("usersUpdate",socketsStatus);
-    });
-
-    socket.on("disconnect", function () {
-      delete socketsStatus[socketId];
-    });
-
-  });
-
-http.listen(port, () => {
-  console.log(`server is run on port ${port}`);
+app.get('/uploadUser', function (req, res) {
+	res.sendFile(path.join(__dirname, '..', 'components', 'user_upload_form.htm'));
 });
+
+app.post('/uploadSuccessful', urlencodedParser, async (req, res) => {
+	try {
+		await sql`INSERT INTO Users (Id, Name, Email) VALUES (${req.body.user_id}, ${req.body.name}, ${req.body.email});`;
+		res.status(200).send('<h1>User added successfully</h1>');
+	} catch (error) {
+		console.error(error);
+		res.status(500).send('Error adding user');
+	}
+});
+
+app.listen(port, () => console.log(`Server ready on port ${port}`));
+
+module.exports = app;
