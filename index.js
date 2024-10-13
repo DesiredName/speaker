@@ -5,8 +5,6 @@ app.get("/", (req, res) => res.send(`Express on Vercel ${process.env.VERCEL_URL}
 
 app.listen(3100, () => console.log("Server ready on port 3100."));
 
-module.exports = app;
-
 
 // const express = require("express");
 // const app = express();
