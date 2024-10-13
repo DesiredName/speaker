@@ -18,7 +18,7 @@ const userStatus = {
     mainFunction(1000);
   };
   
-  var socket = io(`ws://${url}`);
+  var socket = io(`wss://${url}`);
   socket.emit("userInformation", userStatus);
   
   function mainFunction(time) {
