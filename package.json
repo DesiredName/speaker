@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "publish": "git add . && git commit -m 'update' && git push",
     "build": "echo 'ok'",
     "dev":"node index.js",
     "start":"node index.js",
