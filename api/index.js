@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const handlebars = require("express-handlebars");
-const csp = require('express-csp-header');
+const {expressCspHeader: csp, NONE, UNSAFE_EVAL} = require('express-csp-header');
 
 const customHandlebars = handlebars.create({ layoutsDir: "./views" });
 const port = process.env.PORT || 3000;
@@ -13,7 +13,7 @@ app.set("view engine", "handlebars");
 app.use("/files", express.static("public"));
 app.use(csp({
     policies: {
-        'default-src': [csp.NONE, csp.UNSAFE_EVAL]
+        'default-src': [NONE, UNSAFE_EVAL]
     }
 }))
 
