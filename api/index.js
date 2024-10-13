@@ -8,6 +8,7 @@ const port = process.env.PORT || 3000;
 
 app.engine("handlebars", customHandlebars.engine);
 app.set("view engine", "handlebars");
+console.log(__dirname)
 app.set('views', path.join(__dirname, 'views'));
 app.use("/files", express.static("public"));
 
